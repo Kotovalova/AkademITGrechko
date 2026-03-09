@@ -6,7 +6,7 @@ public class ClubRules {
 
     public String checkEntry(Visitor visitor){
         if (visitor.getAge() < 18) {
-            return "Возраст " + visitor.getName() + ":" + visitor.getAge() + ". " + "Вход до 18 строго запрещен!";
+            return visitor.getName() + ". Возраст: " + visitor.getAge() + ". " + "Вход до 18 строго запрещен!";
         } else if (visitor.isWoman()) {
             return "Стоимость входа для " + visitor.getName() + ": " + COST_WOMAN + " рублей";
         } else {

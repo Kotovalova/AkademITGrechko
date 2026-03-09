@@ -15,29 +15,20 @@ public class Visitor {
         this.gender = gender;
     }
 
-    public static Visitor createFromConsole(){
+    public static Visitor createFromConsole() throws VisitorExeption{
         try (Scanner scanner = new Scanner(System.in)){
-
             System.out.println("=== Ввод данных посетителя из консоли === ");
 
-            System.out.println("Введите Имя: ");
-            String name = scanner.nextLine();
-
-            System.out.println("Введите Возраст: ");
-            int age = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.println("Введите пол (м/ж): ");
-            String gender = scanner.nextLine();
-            gender = gender.toUpperCase();
+            String name = ConsoleReader.readName(scanner);
+            int age = ConsoleReader.readAge(scanner);
+            String gender = ConsoleReader.readGender(scanner);
 
             return new Visitor(name, age, gender);
 
         } catch (InputMismatchException e) {
-            System.err.println("Ошибка: нужно ввести число, а не текст!");
             throw e;
         } catch (Exception e) {
-            System.err.println("Ошибка ввода" + e.getMessage());
+            System.err.println("Ошибка ввода. " + e.getMessage());
             throw e;
         }
     }
@@ -55,7 +46,7 @@ public class Visitor {
     }
 
     public boolean isWoman(){
-        return gender.equals("Ж");
+        return gender.equals("ж")||gender.equals("w");
     }
 
 }
